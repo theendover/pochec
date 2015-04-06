@@ -1,0 +1,35 @@
+2015-04-06 12:48:42.309 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:48:42.312 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:48:42.313 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:48:42.313 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:48:42.313 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:48:42.313 [aurora.database] [CONFIG] ===================================== prepare to run model-query wfl.wfl_workflow_instance_for_todo==============================
+2015-04-06 12:48:42.489 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:48:42.489 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:48:42.493 [uncertain.proc] [CONFIG] [action] CreatequeryStatement
+2015-04-06 12:48:42.494 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQueryStatement
+2015-04-06 12:48:42.562 [uncertain.proc] [CONFIG] [action] PopulatequeryStatement
+2015-04-06 12:48:42.562 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateQueryStatement
+2015-04-06 12:48:42.562 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateQueryStatement
+2015-04-06 12:48:42.562 [uncertain.proc] [CONFIG] [action] CreatequerySql
+2015-04-06 12:48:42.562 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQuerySql
+2015-04-06 12:48:42.563 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:48:42.563 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:48:42.596 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:48:42.596 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:48:42.628 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:48:42.628 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:48:42.658 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+SELECT decode(r.date_limit,               null,               0,               decode(sign(r.date_limit - sysdate), -1, 1, 0)) AS is_late,(         select wwn.name                            from wfl_workflow_node_vl wwn                              where wwn.node_id = r.node_id) AS node_name,wfl_common_pkg.get_wfl_user_name(t1.created_by) AS employee_name,         (select wdr.document_desc             from wfl_document_reference_vl wdr            where ww.workflow_category = wdr.workflow_category)          AS order_type,to_char(t1.creation_date, 'yyyy-mm-dd hh24:mi') AS creation_date_view,to_char(r.creation_date, 'yyyy-mm-dd hh24:mi') AS apply_date_view,to_char(r.date_limit, 'yyyy-mm-dd hh24:mi') AS date_limit_view,t1.INSTANCE_DESC,t1.instance_amount,t1.INSTANCE_ID,t1.WORKFLOW_ID,t1.STATUS,t1.CURRENT_NODE,t1.INSTANCE_PARAM,t1.DATE_FROM,t1.DATE_TO,t1.OBJECT_VERSION_NUMBER,t1.REASON,t1.CURRENT_HANDLER,t1.STATUS_DESC,t1.APPROVE_COUNT,t1.NODE_RESULT,t1.ATTACHMENT_ID,t1.DOCUMENT_NUMBER,t1.ATTRIBUTE_N_1,t1.ATTRIBUTE_N_2,t1.ATTRIBUTE_N_3,t1.ATTRIBUTE_N_4,t1.ATTRIBUTE_N_5,t1.ATTRIBUTE_N_6,t1.ATTRIBUTE_N_7,t1.ATTRIBUTE_N_8,t1.ATTRIBUTE_N_9,t1.ATTRIBUTE_N_10,t1.ATTRIBUTE_C_1,t1.ATTRIBUTE_C_2,t1.ATTRIBUTE_C_3,t1.ATTRIBUTE_C_4,t1.ATTRIBUTE_C_5,t1.ATTRIBUTE_C_6,t1.ATTRIBUTE_C_7,t1.ATTRIBUTE_C_8,t1.ATTRIBUTE_C_9,t1.ATTRIBUTE_C_10,t1.ATTRIBUTE_D_1,t1.ATTRIBUTE_D_2,t1.ATTRIBUTE_D_3,t1.ATTRIBUTE_D_4,t1.ATTRIBUTE_D_5,t1.ATTRIBUTE_D_6,t1.ATTRIBUTE_D_7,t1.ATTRIBUTE_D_8,t1.ATTRIBUTE_D_9,t1.ATTRIBUTE_D_10,r.RECORD_ID,r.DATE_LIMIT,r.CREATION_DATE AS apply_date,r.NODE_ID,ww.workflow_id AS workflow_category
+FROM WFL_WORKFLOW_INSTANCE t1
+	INNER JOIN WFL_INSTANCE_NODE_RECIPIENT r ON t1.INSTANCE_ID = r.INSTANCE_ID
+	INNER JOIN wfl_workflow ww ON t1.WORKFLOW_ID = ww.workflow_id
+WHERE  r.user_id = ? 
+ORDER BY is_late desc,creation_date_view desc
+---------------------Binding info---------------------
+No.1	Access path:/session/@user_id	Data type of passed value :java.lang.Long	Value:1	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:48:42.658 [uncertain.proc] [CONFIG] [action] CreateSuccessResponse

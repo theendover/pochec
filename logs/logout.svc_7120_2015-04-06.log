@@ -1,0 +1,6 @@
+2015-04-06 12:48:49.17 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:48:49.32 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:48:49.32 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:48:49.32 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:48:49.32 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:48:49.96 [uncertain.proc] [CONFIG] [action] CreateSuccessResponse

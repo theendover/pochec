@@ -1,0 +1,82 @@
+2015-04-06 12:50:04.184 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:50:04.270 [uncertain.proc] [CONFIG] [action] InitService
+2015-04-06 12:50:04.270 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:50:04.270 [uncertain.proc] [CONFIG] [action] CreateModel
+2015-04-06 12:50:04.271 [aurora.database] [CONFIG] ===================================== prepare to run model-query blt.BLT1010.blt_bulletin_list_no_login==============================
+2015-04-06 12:50:04.304 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:50:04.304 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:50:04.305 [uncertain.proc] [CONFIG] [action] CreatequeryStatement
+2015-04-06 12:50:04.305 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQueryStatement
+2015-04-06 12:50:04.305 [uncertain.proc] [CONFIG] [action] PopulatequeryStatement
+2015-04-06 12:50:04.305 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateQueryStatement
+2015-04-06 12:50:04.305 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateQueryStatement
+2015-04-06 12:50:04.305 [uncertain.proc] [CONFIG] [action] CreatequerySql
+2015-04-06 12:50:04.305 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQuerySql
+2015-04-06 12:50:04.305 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:50:04.305 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:50:04.427 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:50:04.427 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:50:04.427 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:50:04.427 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:50:04.427 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+SELECT t1.BULLETIN_ID,t1.BULLETIN_CATEGORY,t1.BULLETIN_TYPE,t1.BULLETIN_TITLE,t1.BULLETIN_CONTEXT,t1.BULLETIN_CONTEXT_VIEW,t1.OBJECT_CATEGORY,t1.OBJECT_TYPE_ID,t1.OBJECT_TYPE_CODE,t1.DATE_FROM,t1.RELEASE_DATE,t1.STATUS,t1.DATE_TO,t1.ATTACHMENT_ID,(SELECT  v.code_value_name FROM  sys_code_values_v v WHERE  v.code = 'BLT_BULLETIN_STATUS' AND v.code_value = t1.status) AS status_desc,(SELECT  v.code_value_name FROM  sys_code_values_v v WHERE  v.code = 'BLT_BULLETIN_CATEGORY' AND v.code_value = t1.bulletin_category) AS bulletin_category_desc,(SELECT  v.code_value_name FROM  sys_code_values_v v WHERE  v.code = 'BLT_BULLETIN_TYPE' AND v.code_value = t1.bulletin_type) AS bulletin_type_desc,(SELECT  v.code_value_name FROM  sys_code_values_v v WHERE  v.code = 'BLT_BULLETIN_OBJECT_CATEGORY' AND v.code_value = t1.object_category) AS object_category_desc,TO_CHAR(t1.creation_date, 'yyyy-mm-dd hh24:mi:ss') AS creation_date_desc,TO_CHAR(t1.last_update_date, 'yyyy-mm-dd hh24:mi:ss') AS last_update_date_desc,(SELECT u.user_name FROM sys_user u WHERE u.user_id = t1.created_by)  AS created_by_desc,to_char(RELEASE_DATE,'yyyy-mm-dd hh24:mi:ss') AS release_date_desc,to_char(t1.date_from,'yyyy-mm-dd') AS date_from_desc,to_char(t1.date_to,'yyyy-mm-dd') AS date_to_desc,nvl(replace(replace(substr(trim(t1.bulletin_context_view),1,25),'>',''),'<',''),'无摘要') AS bulletin_context_view_desc,nvl(replace(replace(substr(trim(t1.bulletin_title),1,16),'>',''),'<',''),'无标题') AS bulletin_title_desc
+FROM BLT_BULLETIN_LIST t1
+WHERE t1.status = 'RELEASED' AND t1.bulletin_id = ?
+ORDER BY t1.release_date desc,t1.bulletin_id desc
+---------------------Binding info---------------------
+No.1	Access path:/parameter/@bulletin_id	Data type of passed value :java.lang.String	Value:45	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:50:04.427 [aurora.database] [CONFIG] ===================================== prepare to run model-query fnd.fnd_atm_attachment==============================
+2015-04-06 12:50:04.445 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:50:04.445 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:50:04.445 [uncertain.proc] [CONFIG] [action] CreatequeryStatement
+2015-04-06 12:50:04.445 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQueryStatement
+2015-04-06 12:50:04.453 [uncertain.proc] [CONFIG] [action] PopulatequeryStatement
+2015-04-06 12:50:04.453 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateQueryStatement
+2015-04-06 12:50:04.453 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateQueryStatement
+2015-04-06 12:50:04.453 [uncertain.proc] [CONFIG] [action] CreatequerySql
+2015-04-06 12:50:04.453 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQuerySql
+2015-04-06 12:50:04.453 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:50:04.453 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:50:04.481 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:50:04.481 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:50:04.481 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:50:04.482 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:50:04.486 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+SELECT fa.attachment_id,fa.source_type_code,fa.source_pk_value,fa.file_name,fa.file_size,fa.file_path,'1' AS status,fa.CREATION_DATE AS creation_time,fam.table_name,fam.table_pk_value
+FROM fnd_atm_attachment fa
+	LEFT OUTER JOIN fnd_atm_attachment_multi fam ON fa.attachment_id = fam.attachment_id
+WHERE fam.table_name = 'BLT_BULLETIN_LIST' and fam.table_pk_value = ?
+ORDER BY fa.creation_date desc
+---------------------Binding info---------------------
+No.1	Access path:/parameter/@bulletin_id	Data type of passed value :java.lang.String	Value:45	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:50:04.486 [uncertain.proc] [CONFIG] [action] CreateView
+2015-04-06 12:50:04.487 [uncertain.proc] [CONFIG] [action] BuildOutputContent
+2015-04-06 12:50:04.487 [aurora.presentation.buildsession] [CONFIG] Start build session
+2015-04-06 12:50:04.487 [aurora.presentation.buildsession] [CONFIG] building view: <html-page> -> aurora.presentation.component.HtmlPage@bc37c1
+2015-04-06 12:50:04.516 [aurora.presentation.buildsession] [CONFIG] building view: <dataSets> -> aurora.application.features.DataSetInit@f08742
+2015-04-06 12:50:04.516 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:50:04.521 [aurora.presentation.buildsession] [CONFIG] building view: <style> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <table> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <tr> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <td> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.522 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.523 [aurora.presentation.buildsession] [CONFIG] building view: <table> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.523 [aurora.presentation.buildsession] [CONFIG] building view: <tr> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.524 [aurora.presentation.buildsession] [CONFIG] building view: <td> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.524 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.524 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.525 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.525 [aurora.presentation.buildsession] [CONFIG] building view: <hr> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.525 [aurora.presentation.buildsession] [CONFIG] building view: <font> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:50:04.526 [aurora.presentation.buildsession] [CONFIG] building view: <upload> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:50:04.533 [aurora.presentation.buildsession] [CONFIG] End build session

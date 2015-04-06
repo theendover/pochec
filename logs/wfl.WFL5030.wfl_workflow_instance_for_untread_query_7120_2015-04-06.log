@@ -1,0 +1,63 @@
+2015-04-06 12:48:43.165 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:48:43.224 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:48:43.224 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:48:43.224 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:48:43.224 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:48:43.224 [aurora.database] [CONFIG] ===================================== prepare to run model-query wfl.WFL5030.wfl_workflow_instance_for_untread==============================
+2015-04-06 12:48:43.259 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:48:43.259 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:48:43.259 [uncertain.proc] [CONFIG] [action] CreateOperationSql
+2015-04-06 12:48:43.259 [uncertain.proc] [CONFIG] [action] PopulateOperationSql
+2015-04-06 12:48:43.259 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateOperationSql
+2015-04-06 12:48:43.259 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateOperationSql
+2015-04-06 12:48:43.259 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:48:43.259 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:48:43.275 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:48:43.275 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:48:43.291 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:48:43.291 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:48:43.292 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+
+	 select s.*,
+       to_char(s.last_update_date, 'yyyy-mm-dd hh24:mi') last_update_date
+  from (select i.*,
+               i.document_number order_no,
+               '拒绝' as type,
+               (select l.employee_name
+                  from wfl_users_employee_v l
+                 where l.user_id = i.last_updated_by) name,
+               wf.name as workflow_name,
+               wf.description as workflow_desc,
+               wf.UPDATE_FORM,
+               (select r.document_desc
+                  from wfl_document_reference_vl r
+                 where r.workflow_category = wf.workflow_category) order_type
+          from (select max(i.instance_id) instance_id
+                  from wfl_workflow_instance i,
+                       wfl_workflow w1
+                 where i.status = -1
+                   and i.created_by = ?
+                   and i.workflow_id = w1.workflow_id
+                   and not exists
+                 (select 1
+                          from wfl_workflow_instance a,wfl_workflow w2
+                         where a.instance_id > i.instance_id
+                           and a.workflow_id = w2.workflow_id
+                           and w1.workflow_category = w2.workflow_category
+                           and a.instance_param = i.instance_param)
+                 group by w1.workflow_category, i.instance_param) t,
+               wfl_workflow_instance i,
+               wfl_workflow_vl wf
+         where i.instance_id = t.instance_id
+           and i.workflow_id = wf.workflow_id) s
+  
+  ORDER BY ?
+         
+---------------------Binding info---------------------
+No.1	Access path:/session/@user_id	Data type of passed value :java.lang.Long	Value:1	Output:false	Database Type:null	
+No.2	Access path:@ORDER_FIELD	Data type of passed value :[null]	Value:null	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:48:43.292 [uncertain.proc] [CONFIG] [action] CreateSuccessResponse

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bm:model xmlns:bm="http://www.aurora-framework.org/schema/bm">
+    <bm:operations>
+        <bm:operation name="query">
+            <bm:query-sql><![CDATA[		SELECT *
+			  FROM (SELECT T.TRANSACTION_HEADER_ID,
+						   T.TRANSACTION_HEADER_ID PAYMENT_HEADER_ID,
+						   T.TRANSACTION_NUM,
+						  to_char( T.TRANSACTION_DATE,'yyyy-mm-dd') TRANSACTION_DATE,
+						   T.TRANSACTION_TYPE,
+						   L.DOCUMENT_NUM,
+						   L.CURRENCY_CODE,
+						   L.TRANSACTION_AMOUNT,
+						   L.BANK_ACCOUNT_ID,
+						   T.TRANSACTION_CATEGORY,
+						  
+	       decode(TRANSACTION_TYPE,'PAYMENT', (
+                       decode((select distinct cwo.write_off_type from csh_write_off cwo where  cwo.csh_transaction_line_id
+                       =(decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=
+(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID)
+ and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+),'PAYMENT_EXPENSE_REPORT',(select erh.exp_report_number
+				                  from exp_report_headers erh, exp_report_pmt_schedules erps
+				                 where erps.payment_schedule_line_id = (select distinct cwo.document_line_id from csh_write_off cwo where  cwo.csh_transaction_line_id
+                       =(decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+                       and rownum=1)
+				                   and erps.exp_report_header_id = erh.exp_report_header_id),'PAYMENT_PREPAYMENT',
+				                   (
+				                   select distinct t.requisition_number  from csh_payment_requisition_hds t
+				                   where t.payment_requisition_header_id=
+				                   (select l.payment_requisition_header_id 
+				                    from csh_payment_requisition_lns l 
+				                    where l.payment_requisition_line_id =
+				                    (select distinct a.payment_requisition_line_id
+				                    from csh_payment_requisition_refs a 
+				                    where a.csh_transaction_line_id=
+				            (decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=
+(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+ and rownum=1
+				                    )
+				                    ) 
+				                    )
+				                   ,'',
+				                   (select t.requisition_number 
+				                   from acp_acp_requisition_hds t 
+				                   where t.acp_requisition_header_id =
+				                   (select a.acp_requisition_header_id from acp_acp_requisition_lns a where  a.acp_requisition_line_id =
+				                   (select b.acp_requisition_line_id from acp_acp_requisition_refs b where b.csh_transaction_line_id =
+				                   L.transaction_line_id
+				                   )
+				                   )
+				                   )
+				                   ,'11' )
+				                   
+				                   ),'PREPAYMENT',				                   (
+				                   select distinct t.requisition_number  from csh_payment_requisition_hds t
+				                   where t.payment_requisition_header_id=
+				                   (select l.payment_requisition_header_id 
+				                    from csh_payment_requisition_lns l 
+				                    where l.payment_requisition_line_id =
+				                    (select a.payment_requisition_line_id
+				                    from csh_payment_requisition_refs a 
+				                    where a.csh_transaction_line_id = 
+		                  				decode(T.returned_flag,'R',(
+		                  				select ctl.transaction_line_id from csh_transaction_lines ctl where ctl.transaction_header_id=
+		                  				(select bb.source_payment_header_id from csh_transaction_headers bb where bb.transaction_header_id = 
+(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID))
+		                  				
+		                  				)
+		                  				,(decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=
+				      (select bb.source_payment_header_id from csh_transaction_headers bb where bb.transaction_header_id=
+				      (select aa.transaction_header_id from csh_transaction_headers aa where aa.transaction_header_id = T.source_header_id) )
+				      and rownum=1),
+                       				                    ( select b.transaction_line_id  from csh_transaction_lines b where
+				                    b.transaction_header_id =    (select c.source_payment_header_id 
+				                    from CSH_TRANSACTION_HEADERS c where 
+				                    c.transaction_header_id = T.transaction_header_id 
+				                    )
+
+				                    )))    )
+				                    
+				                    and rownum=1
+				                    )
+				                    ) 
+				                    ),'') doc_number,
+				                decode(TRANSACTION_TYPE,'PAYMENT', (
+                       decode((select distinct cwo.write_off_type from csh_write_off cwo where  cwo.csh_transaction_line_id
+                       =	(decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+),'PAYMENT_EXPENSE_REPORT','EXP_REPORT','PAYMENT_PREPAYMENT','PAYMENT_REQUISITION','','ACP_REQUISITION','' )
+				                   
+				                   ),'PREPAYMENT','PAYMENT_REQUISITION','') doc_type,
+				                   
+				         decode(TRANSACTION_TYPE,'PAYMENT', (
+                       decode((select distinct cwo.write_off_type from csh_write_off cwo where  cwo.csh_transaction_line_id
+                       =(decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+),'PAYMENT_EXPENSE_REPORT',(select erh.EXP_REPORT_HEADER_ID
+				                  from exp_report_headers erh, exp_report_pmt_schedules erps
+				                 where erps.payment_schedule_line_id = (select distinct cwo.document_line_id from csh_write_off cwo where  cwo.csh_transaction_line_id
+                       =(decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+ and rownum=1)
+				                   and erps.exp_report_header_id = erh.exp_report_header_id),'PAYMENT_PREPAYMENT',
+				                   (
+				                   select distinct t.PAYMENT_REQUISITION_HEADER_ID  from csh_payment_requisition_hds t
+				                   where t.payment_requisition_header_id=
+				                   (select l.payment_requisition_header_id 
+				                    from csh_payment_requisition_lns l 
+				                    where l.payment_requisition_line_id =
+				                    (select distinct a.payment_requisition_line_id
+				                    from csh_payment_requisition_refs a 
+				                    where a.csh_transaction_line_id =
+				                   (decode(T.returned_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID) and rownum=1),
+                       decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=T.source_header_id and rownum=1),
+                       L.transaction_line_id)))
+				                    and rownum=1
+				                    )
+				                    ) 
+				                    )
+				                   ,'',
+				                   (select t.ACP_REQUISITION_HEADER_ID 
+				                   from acp_acp_requisition_hds t 
+				                   where t.acp_requisition_header_id =
+				                   (select a.acp_requisition_header_id from acp_acp_requisition_lns a where  a.acp_requisition_line_id =
+				                   (select b.acp_requisition_line_id from acp_acp_requisition_refs b where b.csh_transaction_line_id =
+				                   L.transaction_line_id
+				                   )
+				                   )
+				                   )
+				                   ,'' )
+				                   
+				                   ),'PREPAYMENT',				                   (
+				                   select distinct t.PAYMENT_REQUISITION_HEADER_ID  from csh_payment_requisition_hds t
+				                   where t.payment_requisition_header_id=
+				                   (select l.payment_requisition_header_id 
+				                    from csh_payment_requisition_lns l 
+				                    where l.payment_requisition_line_id =
+				                    (select a.payment_requisition_line_id
+				                    from csh_payment_requisition_refs a 
+				                    where a.csh_transaction_line_id = 
+				                    
+			                  				decode(T.returned_flag,'R',(
+		                  				select ctl.transaction_line_id from csh_transaction_lines ctl where ctl.transaction_header_id=
+		                  				(select bb.source_payment_header_id from csh_transaction_headers bb where bb.transaction_header_id = 
+(SELECT  min(TRANSACTION_HEADER_ID)
+  FROM CSH_TRANSACTION_HEADERS
+ START WITH TRANSACTION_HEADER_ID = T.transaction_header_id
+CONNECT BY PRIOR  SOURCE_HEADER_ID =TRANSACTION_HEADER_ID))
+		                  				
+		                  				)
+		                  				,(decode(T.reversed_flag,'R',(select ctl.transaction_line_id  from csh_transaction_lines ctl where ctl.transaction_header_id=
+				      (select bb.source_payment_header_id from csh_transaction_headers bb where bb.transaction_header_id=
+				      (select aa.transaction_header_id from csh_transaction_headers aa where aa.transaction_header_id = T.source_header_id) )
+				      and rownum=1),
+                       				                    ( select b.transaction_line_id  from csh_transaction_lines b where
+				                    b.transaction_header_id =    (select c.source_payment_header_id 
+				                    from CSH_TRANSACTION_HEADERS c where 
+				                    c.transaction_header_id = T.transaction_header_id 
+				                    )
+
+				                    )))    )
+
+				                    
+				                    
+				                    and rownum=1
+				                    )
+				                    ) 
+				                    ),'') doc_header_id,
+
+						   B.BANK_ACCOUNT_CODE,
+						   B.BANK_ACCOUNT_NAME,
+						   L.PARTNER_CATEGORY,
+						   L.PARTNER_ID,
+						   T.POSTED_FLAG,
+						   T.REVERSED_FLAG,
+						   T.RETURNED_FLAG,
+						   T.WRITE_OFF_FLAG,
+						   T.WRITE_OFF_COMPLETED_DATE,
+						   T.COMPANY_ID,
+						   T.PAYMENT_METHOD_ID,
+						   T.GLD_INTERFACE_FLAG,
+						   L.TRANSACTION_LINE_ID,
+						   SU.USER_NAME,
+						   SU.DESCRIPTION AS USER_DESC,
+						   (select cch.contract_number
+						  from con_contract_headers cch,con_document_flows s
+						 where contract_header_id =s.document_id
+						 and s.document_type='CON_CONTRACT'
+						 and s.source_document_type ='CSH_TRANSACTION_HEADERS'
+						 and  s.source_document_id =t.TRANSACTION_HEADER_ID) contact_number,
+						   L.DESCRIPTION,
+						   (SELECT EE.NAME
+							  FROM EXP_EMPLOYEES EE
+							 WHERE EE.EMPLOYEE_ID = L.AGENT_EMPLOYEE_ID) AGENT_NAME,
+							    (SELECT B.CODE_VALUE_NAME
+						  FROM SYS_CODES_VL A, SYS_CODE_VALUES_VL B
+						 WHERE A.CODE_ID = B.CODE_ID
+						   AND A.CODE = 'PAYMENT_OBJECT'
+						   AND B.CODE_VALUE = L.PARTNER_CATEGORY) P_PARTNER_CATEGORY,
+					   
+					   DECODE(L.PARTNER_CATEGORY,
+							  'EMPLOYEE',
+							  (SELECT EE.EMPLOYEE_CODE || '-' || EE.NAME
+								 FROM EXP_EMPLOYEES EE
+								WHERE EE.EMPLOYEE_ID = L.PARTNER_ID),
+							  'VENDER',
+							  (SELECT SVV.VENDER_CODE || '-' || SVV.DESCRIPTION
+								 FROM PUR_SYSTEM_VENDERS_VL SVV
+								WHERE SVV.VENDER_ID = L.PARTNER_ID),
+							  'CUSTOMER',
+							  (SELECT SCV.CUSTOMER_CODE || '-' || SCV.DESCRIPTION
+								 FROM ORD_SYSTEM_CUSTOMERS_VL SCV
+								WHERE SCV.CUSTOMER_ID = L.PARTNER_ID)) PARENER_CODE_NAME
+					  FROM CSH_TRANSACTION_HEADERS T,
+						   CSH_TRANSACTION_LINES   L,
+						   CSH_BANK_ACCOUNTS_VL    B,
+						   SYS_USER                SU
+					 WHERE T.POSTED_FLAG = 'Y'
+					 AND sys_user_secure_exit_pkg.csh_payment_reverse(T.TRANSACTION_HEADER_ID ,${/session/@session_id})='Y'
+					   AND ((T.RETURNED_FLAG = 'N' AND T.REVERSED_FLAG IS NULL ) OR (T.RETURNED_FLAG = 'R' AND T.REVERSED_FLAG IS NULL))
+					   AND T.TRANSACTION_TYPE = 'PAYMENT'
+					   AND T.TRANSACTION_HEADER_ID = L.TRANSACTION_HEADER_ID
+					   AND L.BANK_ACCOUNT_ID = B.BANK_ACCOUNT_ID
+					   AND T.CREATED_BY = SU.USER_ID
+					   AND T.COMPANY_ID=${/session/@company_id}
+					   AND NOT EXISTS (SELECT *
+							  FROM CSH_TRANSACTION_HEADERS A,
+								   CSH_TRANSACTION_LINES   L1,
+								   CSH_WRITE_OFF           W
+							 WHERE A.TRANSACTION_HEADER_ID = L1.TRANSACTION_HEADER_ID
+							   AND L1.TRANSACTION_LINE_ID = W.SOURCE_CSH_TRX_LINE_ID
+							   AND W.WRITE_OFF_TYPE = 'PAYMENT_PREPAYMENT'
+							   AND W.CSH_TRANSACTION_LINE_ID = L1.TRANSACTION_LINE_ID
+							   AND A.WRITE_OFF_FLAG != 'N'
+							   )
+		)
+		#WHERE_CLAUSE# ORDER BY TRANSACTION_NUM DESC]]></bm:query-sql>
+        </bm:operation>
+    </bm:operations>
+    <bm:query-fields>
+        <bm:query-field name="partner_category" dataType="java.lang.String" queryExpression="PARTNER_CATEGORY like  &apos;%&apos;||${@partner_category}||&apos;%&apos;"/>
+        <bm:query-field name="partner_id" dataType="java.lang.String" queryExpression="PARTNER_ID like ${@partner_id}"/>
+        <bm:query-field name="currency_code" dataType="java.lang.String" queryExpression="CURRENCY_CODE like  &apos;%&apos;||${@currency_code}||&apos;%&apos;"/>
+        <bm:query-field name="transaction_num" dataType="java.lang.String" queryExpression="TRANSACTION_NUM like &apos;%&apos;||${@transaction_num}||&apos;%&apos;"/>
+        <bm:query-field name="transaction_date_from" dataType="java.lang.String" queryExpression="TRANSACTION_DATE &gt;= ${@transaction_date_from}"/>
+        <bm:query-field name="transaction_date_to" dataType="java.lang.String" queryExpression="TRANSACTION_DATE &lt;= ${@transaction_date_to}"/>
+        <bm:query-field name="bank_account_code" dataType="java.lang.String" queryExpression="BANK_ACCOUNT_CODE like ${@bank_account_code}"/>
+        <bm:query-field name="payment_method_id" dataType="java.lang.String" queryExpression="PAYMENT_METHOD_ID like  &apos;%&apos;||${@payment_method_id}||&apos;%&apos;"/>
+        <bm:query-field name="agent_name" dataType="java.lang.String" queryExpression="AGENT_NAME like  &apos;%&apos;||${@agent_name}||&apos;%&apos;"/>
+        <bm:query-field name="contact_number" dataType="java.lang.String" queryExpression="CONTACT_NUMBER like  &apos;%&apos;||${@contact_number}||&apos;%&apos;"/>
+        <bm:query-field name="number_from" dataType="java.lang.Float" queryExpression="TRANSACTION_AMOUNT &gt;= ${@number_from}"/>
+        <bm:query-field name="number_to" dataType="java.lang.Float" queryExpression="TRANSACTION_AMOUNT &lt;= ${@number_to}"/>
+        <bm:query-field name="doc_number" queryExpression="doc_number = ${@doc_number}"/>
+    </bm:query-fields>
+</bm:model>

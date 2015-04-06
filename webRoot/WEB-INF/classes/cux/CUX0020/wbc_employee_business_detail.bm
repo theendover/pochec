@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bm:model xmlns:bm="http://www.aurora-framework.org/schema/bm">
+    <bm:operations>
+        <bm:operation name="query">
+            <bm:query-sql><![CDATA[ 
+select t.doc_category,
+       t.doc_category_desc,
+       t.action_type,
+       t.action_type_desc,
+       t.employee_id,
+       t.employee_name,
+       (select ee.employee_code || '-' || ee.name from exp_employees ee where ee.employee_id = t.employee_id) employee_code_name,
+       t.doc_company_id,
+       t.doc_company_name,
+       (select fc.company_code || '-' || fc.company_short_name
+          from fnd_companies_vl fc
+         where fc.company_id = t.doc_company_id) company_code_name,
+       t.document_num
+  from wbc_employee_business_detail_v t #WHERE_CLAUSE#
+ order by t.employee_id,
+          t.doc_category,
+          t.document_num,
+          t.action_type
+ ]]></bm:query-sql>
+        </bm:operation>
+    </bm:operations>
+    <bm:query-fields>
+        <bm:query-field name="doc_category" queryExpression="t.doc_category = ${@doc_category}"/>
+        <bm:query-field name="action_type" queryExpression="t.action_type = ${@action_type}"/>
+        <bm:query-field name="employee_id" queryExpression="t.employee_id = ${@employee_id}"/>
+        <bm:query-field name="company_id" queryExpression="t.doc_company_id = ${@company_id}"/>
+        <bm:query-field name="date_from" queryExpression="t.creation_date &gt;= nvl(${@date_from},t.creation_date)"/>
+        <bm:query-field name="date_to" queryExpression="t.creation_date &lt;= nvl(${@date_to},t.creation_date)"/>
+    </bm:query-fields>
+</bm:model>

@@ -1,0 +1,84 @@
+2015-04-06 12:46:40.184 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:46:40.215 [uncertain.proc] [CONFIG] [action] InitService
+2015-04-06 12:46:40.215 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:46:40.215 [uncertain.proc] [CONFIG] [action] CreateModel
+2015-04-06 12:46:40.215 [uncertain.proc] [CONFIG] [action] CreateView
+2015-04-06 12:46:40.216 [uncertain.proc] [CONFIG] [action] BuildOutputContent
+2015-04-06 12:46:40.216 [aurora.presentation.buildsession] [CONFIG] Start build session
+2015-04-06 12:46:40.216 [aurora.presentation.buildsession] [CONFIG] building view: <html-page> -> aurora.presentation.component.HtmlPage@1fd714b
+2015-04-06 12:46:40.218 [aurora.presentation.buildsession] [CONFIG] building view: <link> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.219 [aurora.presentation.buildsession] [CONFIG] building view: <link> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.219 [aurora.presentation.buildsession] [CONFIG] building view: <link> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.220 [aurora.presentation.buildsession] [CONFIG] building view: <link> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.220 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.221 [aurora.presentation.buildsession] [CONFIG] building view: <dataSets> -> aurora.application.features.DataSetInit@1c56d3f
+2015-04-06 12:46:40.221 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.225 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.226 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.250 [aurora.presentation.buildsession] [CONFIG] building view: <screenBody> -> aurora.presentation.component.std.ScreenBody@82a614
+2015-04-06 12:46:40.250 [aurora.presentation.buildsession] [CONFIG] building view: <screenTopToolbar> -> aurora.presentation.component.std.ScreenTopToolbar@1656c55
+2015-04-06 12:46:40.250 [aurora.presentation.buildsession] [CONFIG] building view: <screenTitle> -> aurora.presentation.component.std.ScreenTitle@1ab692c
+2015-04-06 12:46:40.264 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:46:40.265 [uncertain.proc] [CONFIG] [action] CreatequeryStatement
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQueryStatement
+2015-04-06 12:46:40.265 [uncertain.proc] [CONFIG] [action] PopulatequeryStatement
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateQueryStatement
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateQueryStatement
+2015-04-06 12:46:40.265 [uncertain.proc] [CONFIG] [action] CreatequerySql
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQuerySql
+2015-04-06 12:46:40.265 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:46:40.265 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:46:40.313 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:46:40.314 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:46:40.314 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:46:40.314 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:46:40.314 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+SELECT f.service_id,f.service_name,f.is_entry_page,f.is_access_checked,f.is_login_required,f.is_system_access,? AS language,(select d.description_text from fnd_descriptions d where d.description_id = f.title_id and d.language = ?) AS title,f.title_id
+FROM sys_service f
+WHERE f.service_name = ?
+ORDER BY service_name
+---------------------Binding info---------------------
+No.1	Access path:/session/@lang	Data type of passed value :java.lang.String	Value:ZHS	Output:false	Database Type:null	
+No.2	Access path:/session/@lang	Data type of passed value :java.lang.String	Value:ZHS	Output:false	Database Type:null	
+No.3	Access path:@service_name	Data type of passed value :java.lang.String	Value:modules/bpm/BPM1020/bpm_page_groups.screen	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:46:40.314 [aurora.presentation.buildsession] [CONFIG] building view: <toolbarButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.315 [aurora.presentation.buildsession] [CONFIG] building view: <toolbarButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.316 [aurora.presentation.buildsession] [CONFIG] building view: <gridButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.318 [aurora.presentation.buildsession] [CONFIG] building view: <gridButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.319 [aurora.presentation.buildsession] [CONFIG] building view: <gridButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.321 [aurora.presentation.buildsession] [CONFIG] building view: <queryForm> -> aurora.presentation.component.std.QueryForm@12eef0a
+2015-04-06 12:46:40.325 [aurora.presentation.buildsession] [CONFIG] building view: <hBox> -> aurora.presentation.component.std.HBox@1a91b4a
+2015-04-06 12:46:40.325 [aurora.presentation.buildsession] [CONFIG] building view: <comboBox> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.326 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.327 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.328 [aurora.presentation.buildsession] [CONFIG] building view: <toolbarButton> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.328 [aurora.presentation.buildsession] [CONFIG] building view: <grid> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.329 [aurora.presentation.buildsession] [CONFIG] building view: <navBar> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.338 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.339 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.340 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.341 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.341 [aurora.presentation.buildsession] [CONFIG] building view: <numberField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.343 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.343 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.344 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.345 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.346 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.348 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.349 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.349 [aurora.presentation.buildsession] [CONFIG] building view: <comboBox> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.350 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.351 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.351 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.354 [aurora.presentation.buildsession] [CONFIG] building view: <checkBox> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.357 [aurora.presentation.buildsession] [CONFIG] building view: <comboBox> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.360 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.361 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.362 [aurora.presentation.buildsession] [CONFIG] building view: <lov> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:46:40.365 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:46:40.365 [aurora.presentation.buildsession] [CONFIG] End build session

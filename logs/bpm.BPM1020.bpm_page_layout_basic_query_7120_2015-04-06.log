@@ -1,0 +1,128 @@
+2015-04-06 12:47:00.32 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:47:00.37 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:47:00.37 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:47:00.37 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:47:00.37 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:47:00.37 [aurora.database] [CONFIG] ===================================== prepare to run model-query bpm.BPM1020.bpm_page_layout_basic==============================
+2015-04-06 12:47:00.67 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:47:00.67 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:47:00.67 [uncertain.proc] [CONFIG] [action] CreateOperationSql
+2015-04-06 12:47:00.67 [uncertain.proc] [CONFIG] [action] PopulateOperationSql
+2015-04-06 12:47:00.67 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateOperationSql
+2015-04-06 12:47:00.67 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateOperationSql
+2015-04-06 12:47:00.67 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:47:00.67 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:47:00.151 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+
+                select *
+				  from (select a.*,
+				  (select gt.table_name from bpm_page_group_tables gt where gt.table_id=a.table_id) as table_name,
+      			  (select aa.layout_desc from bpm_page_layout_basic aa where aa.layout_id=a.filter_layout_id) filter_layout_desc,				  
+				               f.prompt,
+				               f.title,
+				               f.labelwidth,
+				               f.labelseparator,
+				               f."row",
+				               f."column",
+				               f.margintop,
+               				   f.marginleft,
+				               g.navbar,
+				               t.ref,
+				               t.selected,
+				               t.closeable,
+				               t.disabled,
+				               t.tabstyle,
+				               t.bodystyle
+				          from bpm_page_layout_basic a,
+				               bpm_page_layout_form  f,
+				               bpm_page_layout_grid  g,
+				               bpm_page_layout_tab   t
+				         where a.layout_id = f.layout_id(+)
+				           and a.layout_id = g.layout_id(+)
+				           and a.layout_id = t.layout_id(+)) v
+				    WHERE v.page_id=?
+				   order by layout_sequence
+            
+---------------------Binding info---------------------
+No.1	Access path:/parameter/@page_id	Data type of passed value :java.lang.String	Value:1000083	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:47:00.152 [uncertain.proc] [CONFIG] [action] HandleException
+2015-04-06 12:47:00.152 [uncertain.proc] [CONFIG] [action] CreateFailResponse
+2015-04-06 12:47:00.153 [aurora.application] [SEVERE] java.sql.SQLException: ORA-00942: 表或视图不存在
+
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:111)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:330)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:287)
+	at oracle.jdbc.driver.T4C8Oall.receive(T4C8Oall.java:742)
+	at oracle.jdbc.driver.T4CCallableStatement.doOall8(T4CCallableStatement.java:211)
+	at oracle.jdbc.driver.T4CCallableStatement.executeForDescribe(T4CCallableStatement.java:794)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1030)
+	at oracle.jdbc.driver.T4CCallableStatement.executeMaybeDescribe(T4CCallableStatement.java:834)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1123)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3284)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:3328)
+	at com.mchange.v2.c3p0.impl.NewProxyCallableStatement.executeQuery(NewProxyCallableStatement.java:2131)
+	at aurora.database.SqlRunner.query(SqlRunner.java:248)
+	at aurora.bm.QuerySqlCreator.onExecuteQuery(QuerySqlCreator.java:176)
+	at sun.reflect.GeneratedMethodAccessor106.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at uncertain.event.ReflectionMethodHandle.handleEvent(ReflectionMethodHandle.java:92)
+	at uncertain.event.ReflectionMethodHandle.handleEvent(ReflectionMethodHandle.java:49)
+	at uncertain.event.Configuration.fireEventInternal(Configuration.java:450)
+	at uncertain.event.Configuration.fireEvent(Configuration.java:388)
+	at uncertain.proc.ProcedureRunner.fireEvent(ProcedureRunner.java:352)
+	at uncertain.proc.Action.run(Action.java:171)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:289)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:330)
+	at uncertain.proc.Procedure.run(Procedure.java:101)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:277)
+	at aurora.database.service.BusinessModelService.query(BusinessModelService.java:196)
+	at aurora.database.actions.ModelQuery.doQuery(ModelQuery.java:80)
+	at aurora.database.actions.AbstractQueryAction.query(AbstractQueryAction.java:164)
+	at aurora.database.actions.AbstractQueryAction.run(AbstractQueryAction.java:187)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:289)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:330)
+	at uncertain.proc.Procedure.run(Procedure.java:101)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:277)
+	at aurora.application.features.AbstractProcedureInvoker.runProcedure(AbstractProcedureInvoker.java:41)
+	at aurora.application.features.InitProcedureInvoker.doInvoke(InitProcedureInvoker.java:34)
+	at aurora.application.features.InitProcedureInvoker.onInvokeService(InitProcedureInvoker.java:42)
+	at sun.reflect.GeneratedMethodAccessor159.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at uncertain.event.ReflectionMethodHandle.handleEvent(ReflectionMethodHandle.java:92)
+	at uncertain.event.ReflectionMethodHandle.handleEvent(ReflectionMethodHandle.java:49)
+	at uncertain.event.Configuration.fireEventInternal(Configuration.java:450)
+	at uncertain.event.Configuration.fireEvent(Configuration.java:388)
+	at uncertain.proc.ProcedureRunner.fireEvent(ProcedureRunner.java:352)
+	at uncertain.proc.Action.run(Action.java:171)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:289)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:330)
+	at uncertain.proc.Procedure.run(Procedure.java:101)
+	at uncertain.proc.Switch.run(Switch.java:90)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:289)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:330)
+	at uncertain.proc.Procedure.run(Procedure.java:101)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:277)
+	at aurora.service.ServiceInstance.invoke(ServiceInstance.java:133)
+	at aurora.service.http.AbstractFacadeServlet.doService(AbstractFacadeServlet.java:158)
+	at aurora.service.http.AbstractFacadeServlet.doPost(AbstractFacadeServlet.java:97)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:228)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:216)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:844)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:634)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:445)
+	at java.lang.Thread.run(Thread.java:619)
+

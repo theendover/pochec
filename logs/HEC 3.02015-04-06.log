@@ -1,0 +1,98 @@
+2015-04-06 12:43:55.501 [uncertain.core] [INFO] Uncertain engine startup
+2015-04-06 12:43:55.554 [aurora.presentation] [INFO] Aurora Presentation Framework Startup... 
+2015-04-06 12:43:55.560 [aurora.presentation] [INFO]  =============== Loading package from D:\prj\workspace\pochec\AuroraUI\src/aurora.ui.std
+2015-04-06 12:43:55.918 [aurora.presentation] [INFO] Loaded package aurora.ui.std
+2015-04-06 12:43:55.918 [aurora.presentation] [INFO]  =============== Loading package from D:\prj\workspace\pochec\AuroraUI\src/aurora.ui.touch
+2015-04-06 12:43:55.988 [aurora.presentation] [INFO] Loaded package aurora.ui.touch
+2015-04-06 12:43:55.988 [aurora.presentation] [INFO]  =============== Loading package from D:\prj\workspace\pochec\webRoot\/WEB-INF/ui.template
+2015-04-06 12:43:55.996 [aurora.presentation] [INFO] Loaded package ui.template
+2015-04-06 12:43:56.3 [uncertain.core] [INFO] Loaded instance aurora.presentation.PresentationManager from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.presentation\presentation-manager.config
+2015-04-06 12:43:56.53 [uncertain.core] [INFO] Loaded instance aurora.presentation.FreeMarkerProvider from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.presentation\freemarker-provider.config
+2015-04-06 12:43:56.91 [uncertain.core] [INFO] Loaded instance aurora.plugin.export.task.ReportTask from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.plugin.export.task\report-task.config
+2015-04-06 12:43:56.99 [uncertain.core] [INFO] Loaded instance aurora.application.ApplicationConfig from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\application.config
+2015-04-06 12:43:56.105 [uncertain.core] [INFO] Loaded instance aurora.application.DefaultSessionInfoProvider from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.features\config\session-info-provider.config
+2015-04-06 12:43:56.120 [uncertain.core] [INFO] Loaded instance aurora.service.lock.SessionLockChecker from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-lock.config
+2015-04-06 12:43:56.136 [uncertain.core] [INFO] Loaded instance uncertain.proc.ProcedureRegistry from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-procedure.config
+2015-04-06 12:43:56.187 [uncertain.core] [INFO] Loaded instance uncertain.event.ParticipantManager from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-listener.config
+2015-04-06 12:43:56.202 [uncertain.core] [INFO] Loaded instance aurora.application.features.ServiceLogging from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-logging.config
+2015-04-06 12:43:56.245 [uncertain.core] [INFO] Loaded instance aurora.application.features.msg.AuroraClientInstance from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\msg.config
+2015-04-06 12:43:56.246 [aurora.application.features.msg] [INFO] start jms client successful!
+2015-04-06 12:43:56.264 [uncertain.core] [INFO] Loaded instance aurora.application.task.TaskHandler from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\task.config
+2015-04-06 12:43:56.270 [uncertain.core] [INFO] Loaded instance aurora.application.features.ApplicationStartupProcedureInvoker from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.base\config\app-init-procedure-invoker.config
+2015-04-06 12:43:56.368 [uncertain.core] [INFO] Loaded instance aurora.service.exception.ExceptionDescriptorConfig from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.base\config\exception-descriptor.config
+2015-04-06 12:43:56.375 [uncertain.core] [INFO] Loaded instance aurora.bm.BmCachedDataProvider from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.base\config\bm-cached-data-provider.config
+2015-04-06 12:43:58.981 [uncertain.core] [INFO] Loaded instance aurora.datasource.DataSourceConfig from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.database\datasource.config
+2015-04-06 12:43:59.86 [uncertain.core] [INFO] Loaded instance aurora.database.profile.DatabaseFactory from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.database\config\database.config
+2015-04-06 12:43:59.89 [uncertain.core] [INFO] Loaded instance aurora.bm.ModelFactory from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.database\config\model-factory.config
+2015-04-06 12:43:59.112 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\service-prompt-cache.config
+2015-04-06 12:43:59.145 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\service-lookup-prompt-cache.config
+2015-04-06 12:43:59.172 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\service-lookup-list-cache.config
+2015-04-06 12:43:59.176 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\screen-access-cache.config
+2015-04-06 12:43:59.183 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\role-service-cache.config
+2015-04-06 12:43:59.188 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\role-bm-cache.config
+2015-04-06 12:43:59.191 [uncertain.cache.CacheFactoryConfig] [INFO] Loading cache config file D:\prj\workspace\pochec\webRoot\WEB-INF\cacheConfig\multi-language-description-cache.config
+2015-04-06 12:43:59.195 [uncertain.core] [INFO] Loaded instance uncertain.cache.CacheFactoryConfig from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\cache.config
+2015-04-06 12:43:59.200 [uncertain.core] [INFO] Loaded instance aurora.application.features.cstm.CustomizationDataProvider from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\customization-data-provider.config
+2015-04-06 12:43:59.205 [uncertain.core] [INFO] Loaded instance aurora.security.CacheBasedResourceAccessChecker from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\cache-based-resource-access-checker.config
+2015-04-06 12:43:59.214 [uncertain.core] [INFO] Loaded instance aurora.bm.CacheBasedCheckerFactory from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\bm-access.config
+2015-04-06 12:43:59.221 [uncertain.core] [INFO] Loaded instance aurora.application.features.ResponseCacheProvider from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\response-cache.config
+2015-04-06 12:43:59.225 [aurora.database] [INFO] Using datasource com.mchange.v2.c3p0.PoolBackedDataSource@e035db01 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@2b9950bc [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 30000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgeuwx98134twlp1lc4vx5|4d4834, idleConnectionTestPeriod -> 60, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 120, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 10, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 1, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@dd28412c [ description -> null, driverClass -> oracle.jdbc.driver.OracleDriver, factoryClassLocation -> null, identityToken -> 1hgeuwx98134twlp1lc4vx5|bc3ed6, jdbcUrl -> jdbc:oracle:thin:@192.168.152.128:1521:orcl, properties -> {user=******, password=******, protocol=thin} ], preferredTestQuery -> select 1 from dual, propertyCycle -> 0, testConnectionOnCheckin -> true, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, factoryClassLocation -> null, identityToken -> 1hgeuwx98134twlp1lc4vx5|1fd7136, numHelperThreads -> 3 ]
+2015-04-06 12:43:59.255 [uncertain.core] [INFO] Loaded instance aurora.database.service.DatabaseServiceFactory from D:\Program Files (x86)\Apache Software Foundation\Tomcat 6.0\temp\aurora_builtin_package\aurora.database\config\database-service-factory.config
+2015-04-06 12:43:59.259 [uncertain.core] [INFO] Loaded instance aurora.application.features.RequestRecorder from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\request-record.config
+2015-04-06 12:43:59.270 [uncertain.core] [INFO] Loaded instance aurora.security.AccessCheckRuleConfig from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.security\access-check-rule.config
+2015-04-06 12:43:59.275 [uncertain.core] [INFO] Loaded instance aurora.i18n.CacheBasedMessageProvider from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-prompt.config
+2015-04-06 12:43:59.280 [uncertain.core] [INFO] Loaded instance aurora.application.features.CacheBasedLookupCodeProvider from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-lookup.config
+2015-04-06 12:43:59.304 [aurora.monitor] [INFO] request recorder initialize
+2015-04-06 12:44:33.142 [uncertain.cache.CacheFactoryConfig] [SEVERE] 
+java.lang.RuntimeException: com.mchange.v2.resourcepool.TimeoutException: A client timed out while waiting to acquire a resource from com.mchange.v2.resourcepool.BasicResourcePool@1437a6d -- timeout at awaitAvailable()
+	at aurora.service.ServiceInstance.invoke(ServiceInstance.java:136)
+	at aurora.service.ServiceInvoker.invokeProcedureWithTransaction(ServiceInvoker.java:22)
+	at aurora.service.ServiceInvoker.invokeProcedureWithTransaction(ServiceInvoker.java:51)
+	at aurora.application.features.cache.CacheProvider.executeProc(CacheProvider.java:328)
+	at aurora.application.features.cache.CacheProvider.initCacheData(CacheProvider.java:205)
+	at aurora.application.features.cache.CacheProvider.initCacheDataWithTrx(CacheProvider.java:211)
+	at aurora.application.features.cache.CacheProvider.initialize(CacheProvider.java:134)
+	at aurora.application.features.cache.PeriodModeCacheProvider.initialize(PeriodModeCacheProvider.java:24)
+	at uncertain.cache.CacheFactoryConfig$CacheInitor.run(CacheFactoryConfig.java:264)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: com.mchange.v2.resourcepool.TimeoutException: A client timed out while waiting to acquire a resource from com.mchange.v2.resourcepool.BasicResourcePool@1437a6d -- timeout at awaitAvailable()
+	at com.mchange.v2.resourcepool.BasicResourcePool.awaitAvailable(BasicResourcePool.java:1317)
+	at com.mchange.v2.resourcepool.BasicResourcePool.prelimCheckoutResource(BasicResourcePool.java:557)
+	at com.mchange.v2.resourcepool.BasicResourcePool.checkoutResource(BasicResourcePool.java:477)
+	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool.checkoutPooledConnection(C3P0PooledConnectionPool.java:525)
+	at com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getConnection(AbstractPoolBackedDataSource.java:128)
+	at aurora.database.service.SqlServiceContext.initConnection(SqlServiceContext.java:172)
+	at aurora.database.service.BusinessModelService.prepareForRun(BusinessModelService.java:109)
+	at aurora.database.service.BusinessModelService.query(BusinessModelService.java:190)
+	at aurora.database.actions.ModelQuery.doQuery(ModelQuery.java:80)
+	at aurora.database.actions.AbstractQueryAction.query(AbstractQueryAction.java:164)
+	at aurora.database.actions.AbstractQueryAction.run(AbstractQueryAction.java:187)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:289)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:330)
+	at uncertain.proc.Procedure.run(Procedure.java:101)
+	at uncertain.proc.ProcedureRunner.run(ProcedureRunner.java:277)
+	at aurora.service.ServiceInstance.invoke(ServiceInstance.java:133)
+	... 9 more
+2015-04-06 12:44:39.245 [uncertain.core] [INFO] =========== Loading participant in {service} scope =============
+2015-04-06 12:44:39.246 [uncertain.core] [INFO] No.1 type=aurora.service.json.JSONServiceInterpreter
+2015-04-06 12:44:39.246 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.246 [uncertain.core] [INFO] No.2 type=aurora.plugin.export.ModelExport
+2015-04-06 12:44:39.246 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.246 [uncertain.core] [INFO] No.3 type=aurora.application.features.cstm.ConfigCustomizationListener
+2015-04-06 12:44:39.247 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.247 [uncertain.core] [INFO] No.4 type=aurora.application.action.DoDispatch
+2015-04-06 12:44:39.247 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.247 [uncertain.core] [INFO] No.5 type=aurora.application.features.DataSetInit
+2015-04-06 12:44:39.247 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] No.6 type=aurora.application.features.CachedScreenListener
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] No.7 type=aurora.application.features.UploadInit
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] No.8 type=aurora.service.lock.SessionLockChecker
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] Got from global instance registry
+2015-04-06 12:44:39.248 [uncertain.core] [INFO] No.9 type=aurora.application.features.RequestRecorder
+2015-04-06 12:44:39.249 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:39.249 [uncertain.core] [INFO] No.10 type=aurora.security.AccessCheck
+2015-04-06 12:44:39.249 [uncertain.core] [INFO] New instance created
+2015-04-06 12:44:41.706 [aurora.application] [INFO] Running application startup procedure from D:\prj\workspace\pochec\webRoot\WEB-INF\aurora.feature\service-procedure.config
+2015-04-06 12:44:41.761 [uncertain.core] [INFO] UncertainEngine startup success in 46283 ms

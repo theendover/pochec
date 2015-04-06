@@ -1,0 +1,33 @@
+2015-04-06 12:47:35.440 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:47:35.445 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:47:35.445 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:47:35.445 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:47:35.445 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:47:35.445 [aurora.database] [CONFIG] ===================================== prepare to run model-query bpm.BPM1020.bpm_page_buttons==============================
+2015-04-06 12:47:35.458 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:47:35.458 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:47:35.458 [uncertain.proc] [CONFIG] [action] CreatequeryStatement
+2015-04-06 12:47:35.458 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQueryStatement
+2015-04-06 12:47:35.458 [uncertain.proc] [CONFIG] [action] PopulatequeryStatement
+2015-04-06 12:47:35.458 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateQueryStatement
+2015-04-06 12:47:35.458 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateQueryStatement
+2015-04-06 12:47:35.458 [uncertain.proc] [CONFIG] [action] CreatequerySql
+2015-04-06 12:47:35.458 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onCreateQuerySql
+2015-04-06 12:47:35.458 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:47:35.459 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:47:35.512 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:47:35.512 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:47:35.559 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:47:35.559 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:47:35.559 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+SELECT t1.BUTTON_ID,t1.PAGE_ID,t1.BUTTON_SEQUENCE,t1.BUTTON_CODE,t1.BUTTON_DESC,t1.OPERATION_TYPE,t1.TEMPLATE_FLAG,t1.ID,t1.TEXT,t1.CLICK,t1.TYPE,t1.WIDTH,t1.HEIGHT,t1.ICON,t1.DISABLED,t1.HIDDEN,t1.STYLE,t1.BTNSTYLE
+FROM BPM_PAGE_BUTTONS t1
+WHERE PAGE_ID = ?
+ORDER BY button_sequence nulls first
+---------------------Binding info---------------------
+No.1	Access path:@page_id	Data type of passed value :java.lang.Long	Value:1000083	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:47:35.559 [uncertain.proc] [CONFIG] [action] CreateSuccessResponse

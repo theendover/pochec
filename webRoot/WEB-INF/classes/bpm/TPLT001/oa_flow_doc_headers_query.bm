@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    $Author: dengyang  
+    $Date: 2014-5-14 下午6:24:42  
+    $Revision: 1.0  
+    $Purpose: 
+-->
+<bm:model xmlns:bm="http://www.aurora-framework.org/schema/bm">
+    <bm:operations>
+        <bm:operation name="query">
+            <bm:query-sql><![CDATA[        SELECT t.*,
+                 (select group_desc from bpm_page_groups where group_id=t.oa_flow_type_id) as template_name,
+                 (select name from exp_employees where employee_id=t.employee_id) as employee_name,
+                 (select description from exp_org_unit_vl where unit_id=t.unit_id) as unit_name,
+                 (select code_value_name from sys_code_values_v where code='EXP_EXPENSE_REPORT_STATUS' and code_value=t.document_status ) as document_status_name
+                                                 
+             FROM oa_flow_doc_headers t 
+             where t.oa_flow_doc_header_id=${/parameter/@oa_flow_doc_header_id}
+             UNION
+             
+             select null,null,null,null,null,null,null,null,null,sysdate as document_date,null,null,null,null,null,null,null,
+                (select group_desc from bpm_page_groups 
+                                          WHERE group_id = (select group_id FROM bpm_pages WHERE
+                                                 page_id = ${/parameter/@page_id})) as template_name,
+                                                 (select name from exp_employees where employee_id=(select employee_id from sys_user where user_id=${/session/@user_id})) as employee_name,
+                                                 (select description from exp_org_unit_vl where unit_id=(select unit_id from  exp_org_position_vl where position_id=(select position_id FROM exp_employee_assigns_v where employee_id=(select employee_id from sys_user where user_id=${/session/@user_id}) and   primary_position_flag = 'Y'
+           AND employee_enabled_flag = 'Y'
+           AND company_id = ${/session/@company_id}))) as unit_name,
+           '新建' as document_status_name from dual
+           where ${/parameter/@oa_flow_doc_header_id} is NULL]]></bm:query-sql>
+            <bm:parameters>
+                <bm:parameter inputPath="/parameter/@oa_flow_doc_header_id"/>
+                <bm:parameter inputPath="/parameter/@page_id"/>
+                <bm:parameter inputPath="/session/@user_id"/>
+                <bm:parameter inputPath="/session/@company_id"/>
+            </bm:parameters>
+        </bm:operation>
+    </bm:operations>
+</bm:model>

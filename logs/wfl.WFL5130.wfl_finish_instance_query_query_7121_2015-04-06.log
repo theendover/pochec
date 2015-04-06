@@ -1,0 +1,82 @@
+2015-04-06 12:49:45.143 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:49:45.147 [uncertain.proc] [CONFIG] [action] CheckServiceLock
+2015-04-06 12:49:45.147 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:49:45.147 [uncertain.proc] [CONFIG] [action] ValidateInput
+2015-04-06 12:49:45.147 [uncertain.proc] [CONFIG] [action] InvokeService
+2015-04-06 12:49:45.147 [aurora.database] [CONFIG] ===================================== prepare to run model-query wfl.WFL5130.wfl_finish_instance_query==============================
+2015-04-06 12:49:45.156 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:49:45.156 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:49:45.156 [uncertain.proc] [CONFIG] [action] CreateOperationSql
+2015-04-06 12:49:45.156 [uncertain.proc] [CONFIG] [action] PopulateOperationSql
+2015-04-06 12:49:45.156 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateOperationSql
+2015-04-06 12:49:45.157 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateOperationSql
+2015-04-06 12:49:45.157 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:49:45.157 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:49:45.174 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:49:45.174 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:49:45.180 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:49:45.180 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:49:45.181 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+
+                select t.*,
+                       decode(t.last_approve_name,
+                              null,
+                              null,
+                              to_char(t.last_update_date, 'yyyy-mm-dd hh24:mi')) last_update_date_desc
+                  from (select rs.*,
+                               to_char(rs.creation_date, 'yyyy-mm-dd hh24:mi') creation_date_desc,
+                               (select code_value_name
+                                  from sys_service_lookup_v
+                                 where code = 'WFL_WORKFLOW_INSTANCE_STATUS'
+                                   and code_value = to_char(rs.status)
+                                   and language = 'ZHS') status_name,
+                                   
+                               wfl_common_pkg.get_current_node(rs.workflow_id,
+                                                               rs.instance_id,
+                                                               rs.current_node) curr_approve_name,
+                               wfl_common_pkg.get_wfl_user_name(rs.created_by) create_by_name,
+                               wfl_common_pkg.get_wfl_user_name((select r.created_by
+                                                                  from wfl_approve_record r
+                                                                 where r.record_id =
+                                                                       (select max(record_id)
+                                                                          from wfl_approve_record
+                                                                         where instance_id =
+                                                                               rs.instance_id))) last_approve_name,
+                               (select wdr.document_desc
+                                  from wfl_document_reference_vl wdr
+                                 where rs.workflow_category = wdr.workflow_category) order_type,
+                                to_char((select max(nr.date_limit)
+                                         from wfl_instance_node_recipient nr,
+                                              wfl_workflow_node           n
+                                        where nr.instance_id = rs.instance_id
+                                          and nr.node_id = n.node_id
+                                          and n.sequence_num = rs.current_node),
+                                       'yyyy-mm-dd hh24:mi') date_limit 
+                          from (select a.instance_id,
+                                       a.workflow_id,
+                                       a.current_node,
+                                       a.created_by,
+                                       a.creation_date,
+                                       a.document_number order_no,
+                                       b.name workflow_name,
+                                       a.last_update_date,
+                                       b.workflow_category,
+                                       a.status,
+                                       a.status_desc,
+                                       a.instance_amount
+                                  from wfl_workflow_instance a, Wfl_Workflow_Vl b
+                                 where a.workflow_id = b.workflow_id
+                                   and a.created_by= ?
+                                   ) rs) t 
+                            WHERE t.status='10' AND t.creation_date > to_date(?, 'yyyy-mm-dd') AND t.creation_date < to_date(?, 'yyyy-mm-dd') + 1
+                           ORDER BY order_no desc
+            
+---------------------Binding info---------------------
+No.1	Access path:/session/@user_id	Data type of passed value :java.lang.Long	Value:1	Output:false	Database Type:null	
+No.2	Access path:@creation_date_from	Data type of passed value :java.lang.String	Value:2015-03-27	Output:false	Database Type:null	
+No.3	Access path:@creation_date_to	Data type of passed value :java.lang.String	Value:2015-04-06	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:49:45.181 [uncertain.proc] [CONFIG] [action] CreateSuccessResponse

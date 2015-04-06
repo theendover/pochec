@@ -1,0 +1,64 @@
+2015-04-06 12:48:41.302 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:48:41.602 [uncertain.proc] [CONFIG] [action] InitService
+2015-04-06 12:48:41.602 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:48:41.602 [uncertain.proc] [CONFIG] [action] CreateModel
+2015-04-06 12:48:41.603 [aurora.database] [CONFIG] ===================================== prepare to run model-query sys.sys_chart_report_config==============================
+2015-04-06 12:48:41.959 [uncertain.proc] [CONFIG] [action] DecideSqlGenerationMode
+2015-04-06 12:48:41.959 [uncertain.proc] [FINE] aurora.database.service.BusinessModelService.onDecideSqlGenerationMode
+2015-04-06 12:48:41.959 [uncertain.proc] [CONFIG] [action] CreateOperationSql
+2015-04-06 12:48:41.959 [uncertain.proc] [CONFIG] [action] PopulateOperationSql
+2015-04-06 12:48:41.959 [uncertain.proc] [FINE] aurora.database.features.WhereClauseCreator.onPopulateOperationSql
+2015-04-06 12:48:41.959 [uncertain.proc] [FINE] aurora.database.features.OrderByClauseCreator.onPopulateOperationSql
+2015-04-06 12:48:41.959 [uncertain.proc] [CONFIG] [action] ExecuteQuery
+2015-04-06 12:48:41.959 [uncertain.proc] [FINE] aurora.bm.QuerySqlCreator.onExecuteQuery
+2015-04-06 12:48:42.3 [uncertain.proc] [CONFIG] [action] QueryFinish
+2015-04-06 12:48:42.4 [uncertain.proc] [FINE] aurora.database.features.AutoQueryCounter.onQueryFinish
+2015-04-06 12:48:42.4 [uncertain.proc] [CONFIG] [action] FetchResultSet
+2015-04-06 12:48:42.4 [uncertain.proc] [FINE] aurora.database.features.CacheBasedLookUpField.postFetchResultSet
+2015-04-06 12:48:42.4 [aurora.database] [CONFIG] 
+============= BEGIN [query] SQL Statement execution dump ============
+
+                SELECT
+                    r.report_id,
+                    r.report_title,
+                    r.report_desc,
+                    r.report_url,
+                    mod(rownum - 1,10) AS style_no
+                FROM
+                    sys_chart_reports r,
+                    sys_chart_reports_assign ra
+                WHERE
+                    r.report_id     = ra.report_id AND
+                    ra.group_id     = sys_chart_report_pkg.get_chart_report_group(?, ?, ?) AND
+                    ra.enabled_flag = 'Y'
+                ORDER BY
+                    ra.order_sequence
+            
+---------------------Binding info---------------------
+No.1	Access path:/session/@user_id	Data type of passed value :java.lang.Long	Value:1	Output:false	Database Type:null	
+No.2	Access path:/session/@role_id	Data type of passed value :java.lang.String	Value:1	Output:false	Database Type:null	
+No.3	Access path:/session/@company_id	Data type of passed value :java.lang.String	Value:221	Output:false	Database Type:null	
+
+=============== END [query] SQL Statement execution dump ============
+
+2015-04-06 12:48:42.4 [uncertain.proc] [CONFIG] [action] CreateView
+2015-04-06 12:48:42.5 [uncertain.proc] [CONFIG] [action] BuildOutputContent
+2015-04-06 12:48:42.5 [aurora.presentation.buildsession] [CONFIG] Start build session
+2015-04-06 12:48:42.5 [aurora.presentation.buildsession] [CONFIG] building view: <html-page> -> aurora.presentation.component.HtmlPage@1c02464
+2015-04-06 12:48:42.6 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.7 [aurora.presentation.buildsession] [CONFIG] building view: <style> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.7 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.7 [aurora.presentation.buildsession] [CONFIG] building view: <a> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.7 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.7 [aurora.presentation.buildsession] [CONFIG] building view: <span> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.8 [aurora.presentation.buildsession] [CONFIG] building view: <a> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.8 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.8 [aurora.presentation.buildsession] [CONFIG] building view: <span> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.9 [aurora.presentation.buildsession] [CONFIG] building view: <a> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.9 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.9 [aurora.presentation.buildsession] [CONFIG] building view: <span> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.10 [aurora.presentation.buildsession] [CONFIG] building view: <a> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.10 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.10 [aurora.presentation.buildsession] [CONFIG] building view: <span> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.11 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:48:42.11 [aurora.presentation.buildsession] [CONFIG] End build session

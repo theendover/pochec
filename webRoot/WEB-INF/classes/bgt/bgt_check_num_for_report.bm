@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    $Author: Spencer  
+    $Date: 2012-8-23 上午10:37:06  
+    $Revision: 1.0  
+    $Purpose: 
+-->
+<bm:model xmlns:bm="http://www.aurora-framework.org/schema/bm">
+    <bm:operations>
+        <bm:operation name="query">
+            <bm:query-sql><![CDATA[
+            	select nvl(cux_bgt_query_pkg.check_log(${/session/@session_id},${@document_type},${@head_id},${/session/@user_id}),0) as check_num from dual
+            ]]></bm:query-sql>
+        </bm:operation>
+    </bm:operations>
+</bm:model>

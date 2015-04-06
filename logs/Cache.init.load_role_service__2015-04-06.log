@@ -1,0 +1,2 @@
+2015-04-06 12:44:01.652 [aurora.database] [CONFIG] ===================================== prepare to run model-query init.load_role_service_access==============================
+2015-04-06 12:44:33.141 [aurora.database] [CONFIG] SqlRunner is null, no sql execution dump info available

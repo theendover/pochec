@@ -1,0 +1,37 @@
+2015-04-06 12:47:10.591 [aurora.application.session_check] [CONFIG] Session data copied to context
+2015-04-06 12:47:10.607 [uncertain.proc] [CONFIG] [action] InitService
+2015-04-06 12:47:10.607 [uncertain.proc] [CONFIG] [action] ParseParameter
+2015-04-06 12:47:10.607 [uncertain.proc] [CONFIG] [action] CreateModel
+2015-04-06 12:47:10.607 [uncertain.proc] [CONFIG] [action] CreateView
+2015-04-06 12:47:10.612 [uncertain.proc] [CONFIG] [action] BuildOutputContent
+2015-04-06 12:47:10.612 [aurora.presentation.buildsession] [CONFIG] Start build session
+2015-04-06 12:47:10.613 [aurora.presentation.buildsession] [CONFIG] building view: <html-page> -> aurora.presentation.component.HtmlPage@16f7ea1
+2015-04-06 12:47:10.614 [aurora.presentation.buildsession] [CONFIG] building view: <style> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.615 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.615 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.615 [aurora.presentation.buildsession] [CONFIG] building view: <dataSets> -> aurora.application.features.DataSetInit@e283f1
+2015-04-06 12:47:10.615 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.619 [aurora.presentation.buildsession] [CONFIG] building view: <dataSet> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.621 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.621 [aurora.presentation.buildsession] [CONFIG] building view: <form> -> aurora.presentation.component.std.Form@28b50a
+2015-04-06 12:47:10.622 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.623 [aurora.presentation.buildsession] [CONFIG] building view: <textField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.623 [aurora.presentation.buildsession] [CONFIG] building view: <hBox> -> aurora.presentation.component.std.HBox@85e334
+2015-04-06 12:47:10.624 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.625 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.625 [aurora.presentation.buildsession] [CONFIG] building view: <grid> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.626 [aurora.presentation.buildsession] [CONFIG] building view: <navBar> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.635 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.639 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.641 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.641 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.641 [aurora.presentation.buildsession] [CONFIG] building view: <numberField> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.643 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.644 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.644 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.645 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.647 [aurora.presentation.buildsession] [CONFIG] building view: <button> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.648 [aurora.presentation.buildsession] [CONFIG] building view: <separator> -> aurora.presentation.TemplateBasedView@1175cd6
+2015-04-06 12:47:10.648 [aurora.presentation.buildsession] [CONFIG] building view: <div> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.651 [aurora.presentation.buildsession] [CONFIG] building view: <script> -> aurora.presentation.DefaultViewBuilder@11bad2d
+2015-04-06 12:47:10.651 [aurora.presentation.buildsession] [CONFIG] End build session
